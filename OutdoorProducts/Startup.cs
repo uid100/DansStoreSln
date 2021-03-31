@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using OutdoorProducts.Models;
 
+// this is a benign change just for giggles.
+
 namespace OutdoorProducts
 {
     public class Startup
