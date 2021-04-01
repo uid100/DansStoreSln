@@ -9,8 +9,37 @@ using Xunit;
 
 namespace OutdoorProducts.Tests
 {
-    public class HomeControllerTests
+    public class ProductControllerTests
     {
+        [Fact]
+        public void Can_Filter_Products()
+        {
+            // Arrange
+            // - create the mock repo
+            Mock<IStoreRepository> mock = new Mock<IStoreRepository>();
+            mock.Setup(m => m.Products).Returns((new Product[]
+            {
+                new Product {ProductID = 1, Name="P1", Category="StarWars"},
+                new Product {ProductID = 2, Name="P2", Category="Pokemon"},
+                new Product {ProductID = 3, Name="P3", Category="StarWars"},
+                new Product {ProductID = 4, Name="P4", Category="Pokemon"},
+                new Product {ProductID = 5, Name="P5", Category="JurassicPark"}
+            }).AsQueryable<Product>());
+
+            // Arrange
+            // - create a controller...
+            HomeController controller = new HomeController(mock.Object);
+
+            // Act
+            Product[] result =
+                (controller.Index("Pokemon", 1).ViewData.Model as ProductsListViewModel).Products.ToArray();
+
+            // Assert
+            Assert.Equal(2, result.Length);
+            Assert.True(result[0].Name == "P2" && result[0].Category == "Pokemon");
+            Assert.True(result[1].Name == "P4" && result[1].Category == "Pokemon");
+        }
+
         [Fact]
         public void Can_Use_Repository()
         {
@@ -25,7 +54,7 @@ namespace OutdoorProducts.Tests
 
             // Act
             ProductsListViewModel result =
-                controller.Index().ViewData.Model as ProductsListViewModel;
+                controller.Index(null).ViewData.Model as ProductsListViewModel;
 
             // Assert
             Product[] prodArray = result.Products.ToArray();
@@ -51,7 +80,7 @@ namespace OutdoorProducts.Tests
             controller.PageSize = 3;
 
             // Act
-            ProductsListViewModel result = controller.Index(2).ViewData.Model as ProductsListViewModel;
+            ProductsListViewModel result = controller.Index(null, 2).ViewData.Model as ProductsListViewModel;
             //IEnumerable<Product> result =
             //        (controller.Index(2) as ViewResult).ViewData.Model
             //                as IEnumerable<Product>;
@@ -82,7 +111,7 @@ namespace OutdoorProducts.Tests
             new HomeController(mock.Object) { PageSize = 3 };
 
             // Act
-            ProductsListViewModel result = controller.Index(2).ViewData.Model as ProductsListViewModel;
+            ProductsListViewModel result = controller.Index(null,2).ViewData.Model as ProductsListViewModel;
 
             // Assert
             PagingInfo pageInfo = result.PagingInfo;
