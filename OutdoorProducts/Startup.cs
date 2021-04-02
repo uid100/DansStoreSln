@@ -5,8 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using OutdoorProducts.Models;
 
-// this is a benign change just for giggles.
-
 namespace OutdoorProducts
 {
     public class Startup
@@ -38,24 +36,20 @@ namespace OutdoorProducts
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute( "catpage",
-                        "{category}/Page{productPage:int}",
+                endpoints.MapControllerRoute( "catpage", "{category}/Page{productPage:int}",
                         new { Controller = "Home", action = "Index" }
                     );
 
-                endpoints.MapControllerRoute("page",
-                        "Page{productPage:int}",
+                endpoints.MapControllerRoute("page", "Page{productPage:int}",
                         new { Controller = "Home", action = "Index", productPage = 1 }
                     );
 
-                endpoints.MapControllerRoute("category",
-                        "{category}",
+                endpoints.MapControllerRoute("category", "{category}",
                         new { Controller = "Home", action = "Index", productPage = 1 }
                     );
 
                 endpoints.MapControllerRoute("pagination", "Products/Page{productPage}",
                     new { Controller = "Home", action = "Index", productPage = 1 });
-
 
                 endpoints.MapDefaultControllerRoute();
                 endpoints.MapRazorPages();

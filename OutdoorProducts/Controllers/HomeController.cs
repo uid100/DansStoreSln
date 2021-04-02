@@ -32,6 +32,7 @@ namespace OutdoorProducts.Controllers
                     ItemsPerPage = PageSize,
                     TotalItems = category == null ?
                         repository.Products.Count() :
+
                         repository.Products.Where(e => e.Category == category).Count()
                 },
                 CurrentCategory = category

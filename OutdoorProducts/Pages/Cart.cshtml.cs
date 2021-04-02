@@ -9,9 +9,10 @@ namespace OutdoorProducts.Pages
     public class CartModel : PageModel
     {
         private IStoreRepository repository;
+
         public CartModel(IStoreRepository repo)
         {
-            repository = repo; 
+            repository = repo;
         }
 
         public Cart Cart { get; set; }
