@@ -14,3 +14,4 @@ This is a build of the demo MVC app from Adam Freeman's ASP.NET Core 3 textbook.
     dotnet sln DansStoreSln add DansStoreSln/OutdoorProducts.Tests 
     dotnet add DansStoreSln/OutdoorProducts.Tests reference DansStoreSln/OutdoorProducts
     
+![Updated Unit Tests through Ch.8  1-Apr-21](https://github.com/uid100/DansStoreSln/blob/master/screenshots/UnitTests.JPG)
