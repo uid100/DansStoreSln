@@ -1,4 +1,4 @@
-![currencyhandtablet.png](https://github.com/uid100/DansStoreSln/blob/master/OutdoorProducts/wwwroot/images/cartempty.png)
+![icon](https://github.com/uid100/DansStoreSln/raw/master/OutdoorProducts/wwwroot/images/cartempty.png)
 [url](https://outdoorproducts.azurewebsites.net)
 
 # DansStoreSln
